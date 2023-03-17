@@ -1,4 +1,4 @@
-# TestMode [![Build status](https://ci.appveyor.com/api/projects/status/g2b1idydl2ov6n80?svg=true)](https://ci.appveyor.com/project/danya794/carddeliveryorder-1)
+# TestMode [![Build status](https://ci.appveyor.com/api/projects/status/qxi53xk6yg58bsdd?svg=true)](https://ci.appveyor.com/project/danya794/testmode)
 
 # Домашнее задание к занятию «2.3. Patterns»
 
