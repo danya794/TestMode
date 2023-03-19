@@ -26,21 +26,36 @@ public class DataGenerator {
     }
 
     private static void sendRequest(RegistrationDto user) {
+// сам запрос
+        given() // "дано"
+                .spec(requestSpec) // указываем, какую спецификацию используем
+                .body(new RegistrationDto("vasya", "password", "active")) // передаём в теле объект, который будет преобразован в JSON
+                .when() // "когда"
+                .post("/api/system/users") // на какой путь относительно BaseUri отправляем запрос
+                .then() // "тогда ожидаем"
+                .statusCode(200); // код 200 OK
+
         // TODO: отправить запрос на указанный в требованиях path, передав в body запроса объект user
         //  и не забудьте передать подготовленную спецификацию requestSpec.
         //  Пример реализации метода показан в условии к задаче.
     }
 
     public static String getRandomLogin() {
+        Faker faker = new Faker();
+        String login = faker.name().username();
+        return login;
+
         // TODO: добавить логику для объявления переменной login и задания её значения, для генерации
         //  случайного логина используйте faker
-        return login;
     }
 
     public static String getRandomPassword() {
+        Faker faker = new Faker();
+        String password = faker.internet().password();
+        return password;
+
         // TODO: добавить логику для объявления переменной password и задания её значения, для генерации
         //  случайного пароля используйте faker
-        return password;
     }
 
     public static class Registration {
@@ -48,14 +63,18 @@ public class DataGenerator {
         }
 
         public static RegistrationDto getUser(String status) {
-            // TODO: создать пользователя user используя методы getRandomLogin(), getRandomPassword() и параметр status
+            RegistrationDto user = new RegistrationDto(getRandomLogin(), getRandomPassword(), status);
             return user;
+
+            // TODO: создать пользователя user используя методы getRandomLogin(), getRandomPassword() и параметр status
         }
 
         public static RegistrationDto getRegisteredUser(String status) {
+            RegistrationDto registeredUser = getUser(status);
+            return registeredUser;
+
             // TODO: объявить переменную registeredUser и присвоить ей значение возвращённое getUser(status).
             // Послать запрос на регистрацию пользователя с помощью вызова sendRequest(registeredUser)
-            return registeredUser;
         }
     }
 
